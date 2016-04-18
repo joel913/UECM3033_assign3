@@ -6,9 +6,19 @@ import sympy as sy
 # DO NOT CHANGE THE NAME OF gausslegendre() function
 def gausslegendre(f, a, b, n=20):
     ans = 0
-    # Edit here to implement your code
+
+    #To obtain nodes and weights for n=1 to 100
+    [X,W]=np.polynomial.legendre.leggauss(n)       
+
+    #Use Lagrange Polynomial to transform the definite integral into the integral from range -1 to 1
+    y=((b-a)/2)*X+((b+a)/2)
+    WF=sum(W*f(y))
+
+    #(b-a)/2 is the jacobian of transformation
+    ans=((b-a)/2)*WF
 
     return ans
+
 
 if __name__ == "__main__":
     def f(x):
